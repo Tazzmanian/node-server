@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { ContactSchema, ContactSchemaInt } from '../models/crmModel';
+import { ContactSchema } from '../models/crmModel';
 import { Request, Response } from 'express';
 
 const Contact = mongoose.model('Contact', ContactSchema);
@@ -27,30 +27,30 @@ export class ContactController {
         });
     }
 
-    public getContactWithID (req: Request, res: Response) {           
+    public getContactWithID(req: Request, res: Response) {
         Contact.findById(req.params.contactId, (err, contact) => {
-            if(err){
+            if (err) {
                 res.send(err);
             }
             res.json(contact);
         });
     }
 
-    public updateContact (req: Request, res: Response) {           
+    public updateContact(req: Request, res: Response) {
         Contact.findOneAndUpdate({ _id: req.params.contactId }, req.body, { new: true }, (err, contact) => {
-            if(err){
+            if (err) {
                 res.send(err);
             }
             res.json(contact);
         });
     }
 
-    public deleteContact (req: Request, res: Response) {           
+    public deleteContact(req: Request, res: Response) {
         Contact.remove({ _id: req.params.contactId }, (err, contact) => {
-            if(err){
+            if (err) {
                 res.send(err);
             }
-            res.json({ message: 'Successfully deleted contact!'});
+            res.json({ message: 'Successfully deleted contact!' });
         });
     }
 }
