@@ -9,7 +9,7 @@ export class AccountRoutes {
         // Account
         app.route('/account')
             // GET endpoint 
-            .get(this.accountController.addNewAccount);
+            .get(this.accountController.addNewWallet);
         // POST endpoint
         // .post(this.contactController.addNewContact)
 
