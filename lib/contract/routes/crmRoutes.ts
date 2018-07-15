@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import {Request, Response} from 'express';
 import { ContactController } from "../controllers/crmController";
 
 export class Routes {    
