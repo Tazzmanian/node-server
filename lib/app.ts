@@ -2,17 +2,20 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { Routes } from './contract/routes/crmRoutes';
 import * as mongoose from 'mongoose';
+import { AccountRoutes } from './account/crmRoutes';
 
 class App {
 
     public app: express.Application;
     public routePrv: Routes = new Routes();
+    public accRoutes: AccountRoutes = new AccountRoutes();
     public mongoUrl: string = 'mongodb://localhost:27017/CRMdb';  
 
     constructor() {
         this.app = express();
         this.config();        
         this.routePrv.routes(this.app);
+        this.accRoutes.routes(this.app);
         this.mongoSetup();
     }
 
