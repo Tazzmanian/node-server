@@ -11,7 +11,6 @@ export class AccountController {
     public addNewWallet(req: Request, res: Response) {
         let mnemonic = bip39.generateMnemonic(); //generates string
         let valid = bip39.validateMnemonic(mnemonic);
-        mnemonic = 'alcohol practice grab proud father cradle film genius kitchen off install possible';
         const seed = bip39.mnemonicToSeed(mnemonic); //creates seed buffer
 
         const root = hdkey.fromMasterSeed(seed);
@@ -21,7 +20,6 @@ export class AccountController {
         let addrNode = root.derive("m/44'/60'/0'/0/0"); //line 1
         let pubKey = ethUtil.privateToPublic(addrNode.privateKey);
         console.log(ethUtil.bufferToHex(pubKey), ethUtil.bufferToHex(addrNode.privateKey));
-        console.log((addrNode as any).getWallet());
         let addr = ethUtil.pubToAddress(pubKey);
         let address = ethUtil.toChecksumAddress(ethUtil.bufferToHex(addr));
         valid = ethUtil.isValidAddress(address);
